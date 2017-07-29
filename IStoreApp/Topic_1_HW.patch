@@ -1,0 +1,160 @@
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .gitignore	(revision 60713bbb5f5a911ccf3de6abacf18552481a7c97)
++++ .gitignore	(revision 60713bbb5f5a911ccf3de6abacf18552481a7c97)
+@@ -0,0 +1,4 @@
++# Created by .ignore support plugin (hsz.mobi)
++.idea
++*.iml
++target
+\ No newline at end of file
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pom.xml	(revision 60713bbb5f5a911ccf3de6abacf18552481a7c97)
++++ pom.xml	(revision 60713bbb5f5a911ccf3de6abacf18552481a7c97)
+@@ -0,0 +1,45 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0"
++         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <modelVersion>4.0.0</modelVersion>
++
++    <groupId>bionic.edu</groupId>
++    <artifactId>istore</artifactId>
++    <version>1.0-SNAPSHOT</version>
++
++    <packaging>jar</packaging>
++    <name>iStore WebApplication</name>
++
++    <properties>
++        <java.version>1.8</java.version>
++        <!-- Extendedcore library -->
++        <guava.version>22.0</guava.version>
++    </properties>
++
++    <build>
++        <finalName>mac-shop</finalName>
++        <defaultGoal>package</defaultGoal>
++        <plugins>
++            <plugin>
++                <groupId>org.apache.maven.plugins</groupId>
++                <artifactId>maven-compiler-plugin</artifactId>
++                <version>3.1</version>
++                <configuration>
++                    <source>${java.version}</source>
++                    <target>${java.version}</target>
++                </configuration>
++            </plugin>
++        </plugins>
++    </build>
++
++    <dependencies>
++        <dependency>
++            <groupId>com.google.guava</groupId>
++            <artifactId>guava</artifactId>
++            <version>${guava.version}</version>
++        </dependency>
++    </dependencies>
++
++
++</project>
+\ No newline at end of file
+Index: src/main/java/edu/bionic/IStoreApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/edu/bionic/IStoreApplication.java	(revision 60713bbb5f5a911ccf3de6abacf18552481a7c97)
++++ src/main/java/edu/bionic/IStoreApplication.java	(revision 60713bbb5f5a911ccf3de6abacf18552481a7c97)
+@@ -0,0 +1,39 @@
++package edu.bionic;
++
++import com.google.common.collect.ImmutableList;
++
++import java.util.List;
++import java.util.stream.Collectors;
++
++public class IStoreApplication {
++
++    private static List<Product> products;
++
++    public static void main(String[] args) {
++        initProducts();
++
++        List<Product> sortedProducts = getSortedProducts();
++        printProducts(sortedProducts);
++    }
++
++    private static void initProducts() {
++        products = ImmutableList.of(
++                new Product(1, "iPhone 7", 700),
++                new Product(2, "iPhone 7 Plus", 800),
++                new Product(3, "MacBook Pro", 1500)
++        );
++    }
++
++    private static List<Product> getSortedProducts() {
++        return products
++                .stream()
++                .sorted((product1, product2) -> Double.compare(product2.getPrice(), product1.getPrice()))
++                .collect(Collectors.toList());
++    }
++
++    private static void printProducts(List<Product> products) {
++        products.forEach(product -> {
++            System.out.println(String.format("Product: %s, price - %.2f USD", product.getName(), product.getPrice()));
++        });
++    }
++}
+Index: src/main/java/edu/bionic/Product.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/edu/bionic/Product.java	(revision 60713bbb5f5a911ccf3de6abacf18552481a7c97)
++++ src/main/java/edu/bionic/Product.java	(revision 60713bbb5f5a911ccf3de6abacf18552481a7c97)
+@@ -0,0 +1,38 @@
++package edu.bionic;
++
++public class Product {
++
++    private Integer id;
++    private String name;
++    private double price;
++
++    public Product(Integer id, String name, double price) {
++        this.id = id;
++        this.name = name;
++        this.price = price;
++    }
++
++    public Integer getId() {
++        return id;
++    }
++
++    public void setId(Integer id) {
++        this.id = id;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public double getPrice() {
++        return price;
++    }
++
++    public void setPrice(double price) {
++        this.price = price;
++    }
++}

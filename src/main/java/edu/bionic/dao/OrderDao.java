@@ -8,5 +8,5 @@ public interface OrderDao {
 
     List<Order> getAll();
 
-    void save(Order order);
+    Order save(Order order);
 }

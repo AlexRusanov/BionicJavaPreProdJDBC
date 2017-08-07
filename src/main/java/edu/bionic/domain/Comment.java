@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class Comment {
 
+    private Integer id;
     private Integer productId;
 
     private String author;
@@ -21,6 +22,14 @@ public class Comment {
 
     public Comment() {
 
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getProductId() {

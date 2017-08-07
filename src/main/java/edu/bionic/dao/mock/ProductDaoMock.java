@@ -76,5 +76,4 @@ public class ProductDaoMock implements ProductDao {
                 "5,5 inch"
         ));
     }
-
 }

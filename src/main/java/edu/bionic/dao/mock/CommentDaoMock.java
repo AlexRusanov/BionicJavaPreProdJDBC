@@ -22,8 +22,9 @@ public class CommentDaoMock implements CommentDao {
     }
 
     @Override
-    public void save(Comment comment) {
+    public Comment save(Comment comment) {
         commentStorage.add(comment);
+        return comment;
     }
 
     public void initCommentStorage() {

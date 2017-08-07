@@ -7,5 +7,5 @@ import java.util.List;
 public interface CommentDao {
 
     List<Comment> getByProduct(int productId);
-    void save(Comment comment);
+    Comment save(Comment comment);
 }

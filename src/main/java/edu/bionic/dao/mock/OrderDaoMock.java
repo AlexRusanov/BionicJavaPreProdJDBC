@@ -16,8 +16,9 @@ public class OrderDaoMock implements OrderDao {
     }
 
     @Override
-    public void save(Order order) {
+    public Order save(Order order) {
         orderStorage.add(order);
+        return order;
     }
 
     public void initOrderStorage() {

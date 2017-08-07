@@ -51,4 +51,10 @@ public class JdbcProductDao implements ProductDao {
         List<Product> product = jdbcTemplate.query(sql, new Object[]{productId}, ROW_MAPPER);
         return Optional.ofNullable(DataAccessUtils.singleResult(product));
     }
+
+    List<Product> getByOrder(int orderId) {
+        String sql = "SELECT * FROM products LEFT JOIN orders_products ON products.id = orders_products.product_id " +
+                "WHERE orders_products.order_id = ?";
+        return jdbcTemplate.query(sql, new Object[] {orderId},ROW_MAPPER);
+    }
 }

@@ -38,4 +38,4 @@ CREATE TABLE comments (
   text        TEXT,
   rating      INTEGER,
   FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
-)
+);

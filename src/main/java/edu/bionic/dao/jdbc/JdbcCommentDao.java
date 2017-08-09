@@ -3,8 +3,10 @@ package edu.bionic.dao.jdbc;
 import edu.bionic.dao.CommentDao;
 import edu.bionic.domain.Comment;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,16 +29,7 @@ public class JdbcCommentDao implements CommentDao {
     public JdbcCommentDao(JdbcTemplate jdbcTemplate, DataSource dataSource) {
         this.jdbcTemplate = jdbcTemplate;
 
-        ROW_MAPPER = (rs, rowNum) -> {
-            Comment comment = new Comment();
-            comment.setId(rs.getInt("id"));
-            comment.setProductId(rs.getInt("product_id"));
-            comment.setAuthor(rs.getString("author"));
-            comment.setDateTime(rs.getTimestamp("datetime").toLocalDateTime());
-            comment.setText(rs.getString("text"));
-            comment.setRating(rs.getInt("rating"));
-            return comment;
-        };
+        ROW_MAPPER = BeanPropertyRowMapper.newInstance(Comment.class);
         commentInsert = new SimpleJdbcInsert(dataSource)
                 .withTableName("comments")
                 .usingGeneratedKeyColumns("id");
@@ -50,12 +43,7 @@ public class JdbcCommentDao implements CommentDao {
 
     @Override
     public Comment save(Comment comment) {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("product_id", comment.getProductId());
-        parameters.put("author", comment.getAuthor());
-        parameters.put("datetime", comment.getDateTime());
-        parameters.put("text", comment.getText());
-        parameters.put("rating", comment.getRating());
+        BeanPropertySqlParameterSource parameters = new BeanPropertySqlParameterSource(comment);
         Number newId = commentInsert.executeAndReturnKey(parameters);
 
         comment.setId(newId.intValue());

@@ -6,6 +6,7 @@ import edu.bionic.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.dao.support.DataAccessUtils;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -27,17 +28,7 @@ public class JdbcProductDao implements ProductDao {
     public JdbcProductDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
 
-        ROW_MAPPER = (rs, rowNum) -> {
-            Product product = new Product();
-            product.setId(rs.getInt("id"));
-            product.setName(rs.getString("name"));
-            product.setPrice(rs.getBigDecimal("price"));
-            product.setColor(Color.values()[rs.getInt("color")]);
-            product.setCapacity(rs.getInt("capacity"));
-            product.setDisplay(rs.getString("display"));
-            product.setDescription(rs.getString("description"));
-            return product;
-        };
+        ROW_MAPPER = BeanPropertyRowMapper.newInstance(Product.class);
     }
 
 

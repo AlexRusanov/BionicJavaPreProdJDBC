@@ -45,11 +45,18 @@
    * [Spring MVC Validation (англ.)](http://codetutr.com/2013/05/28/spring-mvc-form-validation/)
    * [Spring MVC Exception Handling (англ.)](https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc)
    * [How to redirect BindingErrors after POST](https://stackoverflow.com/questions/2543797/spring-redirect-after-post-even-with-validation-errors)
-### Topic 7 - SQL, Spring JDBC
+### Topic 7 - SQL, PostgreSQL, Spring JDBC
    * [Практические задачи по SQL](http://www.sql-ex.ru/)
    * [PostgreSQL syntax (англ.\обзорно)](https://www.postgresql.org/docs/current/static/sql-commands.html)
    * [PostgreSQL datatypes (англ.\обзорно)](https://www.postgresql.org/docs/9.6/static/datatype.html)
    * [HSQLDB datatypes & syntax (англ.\обзорно)](http://hsqldb.org/doc/guide/sqlgeneral-chapt.html#sgc_data_type_guide)
    * [Простой Dao класс с Spring JDBC](https://javatalks.ru/topics/25965)
+   * [Инициализация базы данных в Spring JDBC (англ.)](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jdbc.html#jdbc-initializing-datasource)
    * [Документация по Spring JDBC (англ.\обзорно)](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jdbc.html)
+### Topic 8 - Spring JDBC in details
+   * [Написание простых запросов с JDBCTemplate (англ.)](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jdbc.html#jdbc-JdbcTemplate)
+   * [Описание NamedParametersJDBCTemplate (англ.)](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jdbc.html#jdbc-NamedParameterJdbcTemplate)
+   * [Описание SimpleJDBC Insert (англ.)](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jdbc.html#jdbc-simple-jdbc-insert-2)
+   * [Что такое транзакции. Уровни изоляции тракзакций.](http://akorsa.ru/2016/08/rukovodstvo-dlya-nachinayushhih-acid-i-tranzaktsii-bd/)
+   * [Spring JDBC One-To-Many Example (англ.)](https://stackoverflow.com/questions/16461735/jdbc-template-one-to-many)
    

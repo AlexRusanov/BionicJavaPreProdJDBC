@@ -59,4 +59,7 @@
    * [Описание SimpleJDBC Insert (англ.)](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/jdbc.html#jdbc-simple-jdbc-insert-2)
    * [Что такое транзакции. Уровни изоляции тракзакций.](http://akorsa.ru/2016/08/rukovodstvo-dlya-nachinayushhih-acid-i-tranzaktsii-bd/)
    * [Spring JDBC One-To-Many Example (англ.)](https://stackoverflow.com/questions/16461735/jdbc-template-one-to-many)
-   
+### Topic 9 - Spring Testing Dao Layer, Spring Profiles
+   * [Unit тестирование с JUnit](http://devcolibri.com/864)
+   * [Создание Profiles в Spring Context](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html#beans-environment)
+   * [Описание Spring TestContext Framework (англ.\обзорно)](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/integration-testing.html#testcontext-framework)

@@ -1,58 +1,59 @@
-package edu.bionic.dao.mock;
+package edu.bionic.testdata;
 
-import edu.bionic.dao.CommentDao;
+import com.google.common.collect.Lists;
 import edu.bionic.domain.Comment;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class CommentDaoMock implements CommentDao {
+public class CommentFactory {
 
-    private List<Comment> commentStorage;
-
-    @Override
-    public List<Comment> getByProduct(int productId) {
-        return commentStorage
-                .stream()
-                .filter(comment -> comment.getProductId() == productId)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public Comment save(Comment comment) {
-        commentStorage.add(comment);
-        return comment;
-    }
-
-    public void initCommentStorage() {
-        commentStorage = new ArrayList<>();
-
-        commentStorage.add(new Comment(
+    public static Comment getComment1() {
+        return new Comment(
                 1,
                 1,
                 "Сергей",
                 LocalDateTime.of(2016, Month.DECEMBER, 28, 13, 0),
                 "Отличный девайс. Пользуюсь уже около года. Никаких замечаний",
                 5
-        ));
-        commentStorage.add(new Comment(
+        );
+    }
+
+    public static Comment getComment2() {
+        return new Comment(
                 2,
-                4,
+                1,
                 "Анна",
                 LocalDateTime.of(2017, Month.MARCH, 12, 15, 0),
                 "Возникли проблемы на второй месяц использования. Пропадает зук в динамиках",
                 3
-        ));
-        commentStorage.add(new Comment(
+        );
+    }
+
+    public static Comment getComment3() {
+        return new Comment(
                 3,
                 1,
                 "Инна",
                 LocalDateTime.of(2017, Month.APRIL, 5, 10, 30),
                 "Хоший телефон. Единственный недостаток это цена :(",
                 4
-        ));
+        );
+    }
+
+    public static List<Comment> getCommentsForProduct1() {
+        return Lists.newArrayList(getComment1(), getComment3());
+    }
+
+    public static Comment getNewCommentForProduct1() {
+        return new Comment(
+                null,
+                1,
+                "Валера",
+                LocalDateTime.of(2017, Month.AUGUST, 11, 11, 11),
+                "Классный аппарат!!",
+                5
+        );
     }
 }

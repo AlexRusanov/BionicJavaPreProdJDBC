@@ -27,8 +27,8 @@ VALUES (2200, '2017-07-23 18:00:00', 'Аня', 'anya@gmail.com', '095664357685',
 INSERT INTO orders_products (order_id, product_id) VALUES (1, 1);
 INSERT INTO orders_products (order_id, product_id) VALUES (1, 5);
 INSERT INTO orders_products (order_id, product_id) VALUES (2, 2);
-INSERT INTO orders_products (order_id, product_id) VALUES (2, 6);
 INSERT INTO orders_products (order_id, product_id) VALUES (2, 3);
+INSERT INTO orders_products (order_id, product_id) VALUES (2, 6);
 
 INSERT INTO comments (product_id, author, datetime, text, rating)
 VALUES (1, 'Сергей', '2016-12-28 13:00:00', 'Отличный девайс. Пользуюсь уже около года. Никаких замечаний', 5);

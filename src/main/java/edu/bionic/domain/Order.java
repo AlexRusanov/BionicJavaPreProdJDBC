@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,41 @@ public class Order {
         this.products = new ArrayList<>(products);
     }
 
+    public Order(Integer id, LocalDateTime dateTime, BigDecimal totalAmount, List<Product> products, String name, String email, String phone, String address) {
+        this.id = id;
+        this.dateTime = dateTime;
+        this.totalAmount = totalAmount.setScale(2, RoundingMode.HALF_UP);
+        this.products = products;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (!id.equals(order.id)) return false;
+        if (!dateTime.equals(order.dateTime)) return false;
+        if (!totalAmount.equals(order.totalAmount)) return false;
+        if (!products.equals(order.products)) return false;
+        return email.equals(order.email);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + dateTime.hashCode();
+        result = 31 * result + totalAmount.hashCode();
+        result = 31 * result + products.hashCode();
+        result = 31 * result + email.hashCode();
+        return result;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -59,7 +95,7 @@ public class Order {
     }
 
     public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
+        this.totalAmount = totalAmount.setScale(2,RoundingMode.HALF_UP);
     }
 
     public List<Product> getProducts() {

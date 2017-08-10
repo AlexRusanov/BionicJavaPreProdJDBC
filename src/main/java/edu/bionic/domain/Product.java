@@ -1,6 +1,7 @@
 package edu.bionic.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Product {
 
@@ -14,13 +15,53 @@ public class Product {
 
     public Product() { }
 
-    public Product(Integer id, String name, BigDecimal price, Color color, Integer capacity, String display) {
+    public Product(Integer id, String name, BigDecimal price, Color color, Integer capacity, String display, String description) {
         this.id = id;
         this.name = name;
-        this.price = price;
+        this.price = price.setScale(2, RoundingMode.HALF_UP);
         this.color = color;
         this.capacity = capacity;
         this.display = display;
+        this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (!id.equals(product.id)) return false;
+        if (!name.equals(product.name)) return false;
+        if (!price.equals(product.price)) return false;
+        if (color != product.color) return false;
+        if (!capacity.equals(product.capacity)) return false;
+        return display.equals(product.display);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + price.hashCode();
+        result = 31 * result + color.hashCode();
+        result = 31 * result + capacity.hashCode();
+        result = 31 * result + display.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", color=" + color +
+                ", capacity=" + capacity +
+                ", display='" + display + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 
     public Integer getId() {
@@ -44,7 +85,7 @@ public class Product {
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price;
+        this.price = price.setScale(2, RoundingMode.HALF_UP);
     }
 
     public Color getColor() {
